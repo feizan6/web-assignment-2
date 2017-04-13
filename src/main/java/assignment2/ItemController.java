@@ -27,7 +27,7 @@ public class ItemController {
 
     @RequestMapping(value = "/cheapest/{price}", method = RequestMethod.GET)
     public List<Item> getItemsBelow(@PathVariable double price) {
-        return itemRepository.findByItemLessThan(price);
+        return itemRepository.findByItemPriceLessThan(price);
 
     }
 
@@ -36,5 +36,14 @@ public class ItemController {
         itemRepository.save(item);
 
         return itemRepository.findAll();
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public List<Item> delete(@PathVariable long id) {
+
+        itemRepository.delete(id);
+
+        return itemRepository.findAll();
+
     }
 }
