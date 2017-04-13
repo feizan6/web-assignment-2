@@ -17,19 +17,15 @@ public class Item {
     private long id;
 
     private String itemName;
-    private int quantity;
     private double itemPrice;
+    private int quantity;
 
     public Item(){}
 
-    public Item(String itemName, int quantity, double itemPrice){
+    public Item(String itemName, double itemPrice, int quantity){
         this.itemName = itemName;
-        this.quantity = quantity;
         this.itemPrice = itemPrice;
-    }
-
-    public double getItemPrice() {
-        return itemPrice;
+        this.quantity = quantity;
     }
 
     public int getQuantity() {
@@ -40,7 +36,11 @@ public class Item {
         return itemName;
     }
 
-    public double getTotalPrice() {
+    public double getItemPrice() {
+        return itemPrice;
+    }
+
+    public double getTotalPrice(){
         return itemPrice * quantity;
     }
 
@@ -48,3 +48,4 @@ public class Item {
         return id;
     }
 }
+
