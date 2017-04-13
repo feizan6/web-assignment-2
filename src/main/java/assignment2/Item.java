@@ -1,9 +1,21 @@
 package assignment2;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Created by Fayzan on 13/04/2017.
  */
+
+@Entity
 public class Item {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
+
     private String itemName;
     private int quantity;
     private double itemPrice;
@@ -30,5 +42,9 @@ public class Item {
 
     public double getTotalPrice() {
         return itemPrice * quantity;
+    }
+
+    public long getId() {
+        return id;
     }
 }
