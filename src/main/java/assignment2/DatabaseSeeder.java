@@ -18,7 +18,6 @@ public class DatabaseSeeder implements CommandLineRunner {
 
     @Autowired
     public DatabaseSeeder(ItemRepository itemRepository) {
-
         this.itemRepository = itemRepository;
     }
 
@@ -26,7 +25,6 @@ public class DatabaseSeeder implements CommandLineRunner {
     public void run(String... strings) throws Exception {
 
         List<Item> items = new ArrayList<>();
-
         items.add(new Item("Coffee", 1, 1.99));
         items.add(new Item("Cookies", 2, 0.99));
 

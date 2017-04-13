@@ -1,5 +1,6 @@
-/*C22*/SET SCHEMA PUBLIC
+/*C12*/SET SCHEMA PUBLIC
 drop table item if exists
+drop sequence hibernate_sequence
 create sequence hibernate_sequence start with 1 increment by 1
 create table item (id bigint not null, item_name varchar(255), item_price double not null, quantity integer not null, primary key (id))
 INSERT INTO ITEM VALUES(10,'Coffee',1.99E0,1)
