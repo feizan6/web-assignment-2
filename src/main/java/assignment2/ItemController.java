@@ -1,9 +1,6 @@
 package assignment2;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,5 +36,12 @@ public class ItemController {
         return items.stream().filter(x -> x.getItemPrice() <= price)
                 .collect(Collectors.toList());
 
+    }
+
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    public List<Item> create(@RequestBody Item item) {
+        items.add(item);
+
+        return items;
     }
 }
