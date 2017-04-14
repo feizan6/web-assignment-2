@@ -1,6 +1,8 @@
 package assignment2;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,74 +13,50 @@ import java.util.stream.Collectors;
  * Created by Fayzan on 13/04/2017.
  */
 
-//@RestController
-//@RequestMapping(value = "/items")
-//public class ItemController {
-//
-//    private ItemRepository itemRepository;
-//
-//    public ItemController(ItemRepository itemRepository) {
-//        this.itemRepository = itemRepository;
-//    }
-//
-//    @RequestMapping(value = "/all", method = RequestMethod.GET)
-//    public List<Item> getAll() {
-//        return itemRepository.findAll();
-//    }
-//
-//    @RequestMapping(value = "/cheapest/{price}", method = RequestMethod.GET)
-//    public List<Item> getItemsBelow(@PathVariable double price) {
-//        return itemRepository.findByItemPriceLessThan(price);
-//    }
-//
-//    @RequestMapping(value = "/new", method = RequestMethod.POST)
-//    public List<Item> create(@RequestBody Item item) {
-//        itemRepository.save(item);
-//        return itemRepository.findAll();
-//    }
-//
-//    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-//    public List<Item> delete(@PathVariable long id) {
-//        itemRepository.delete(id);
-//        return itemRepository.findAll();
-//
-//    }
-//}
 
-
-@RestController
-@RequestMapping(value = "/items")
-
+@Controller
 public class ItemController {
 
-    private ItemRepository itemRepository;
+    private ItemService itemService;
 
     @Autowired
-    public ItemController(ItemRepository itemRepository){
-        this.itemRepository = itemRepository;
+    public void setItemService(ItemService itemService) {
+        this.itemService = itemService;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<Item> getAll(){
-        return itemRepository.findAll();
+    @RequestMapping(value = "/items", method = RequestMethod.GET)
+    public String list(Model model) {
+        model.addAttribute("items", itemService.listAllItems());
+        return "layout/items";
     }
 
-    @RequestMapping(value = "/cheapest/{price}", method = RequestMethod.GET)
-    public List<Item> getCheapest(@PathVariable double price){
-        return itemRepository.findByItemPriceLessThan(price);
+    @RequestMapping("item/{id}")
+    public String showItem(@PathVariable Integer id, Model model) {
+        model.addAttribute("item", itemService.getProductById(id));
+        return "itemshow";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public List<Item> create(@RequestBody Item item){
-        itemRepository.save(item);
-
-        return itemRepository.findAll();
+    @RequestMapping("item/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        model.addAttribute("item", itemService.getProductById(id));
+        return "itemform";
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    public List<Item> remove(@PathVariable long id){
-        itemRepository.delete(id);
+    @RequestMapping("item/new")
+    public String newProduct(Model model) {
+        model.addAttribute("item", new Item());
+        return "itemform";
+    }
 
-        return itemRepository.findAll();
+    @RequestMapping(value = "item", method = RequestMethod.POST)
+    public String saveProduct(Item item) {
+        itemService.saveItem(item);
+        return "redirect:/item/" + item.getId();
+    }
+
+    @RequestMapping("item/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+        itemService.deleteItem(id);
+        return "redirect:/items";
     }
 }

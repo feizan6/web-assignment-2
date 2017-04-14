@@ -21,6 +21,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         this.itemRepository = itemRepository;
     }
 
+    // Generates initial db values.
     @Override
     public void run(String... strings) throws Exception {
         List<Item> items = new ArrayList<>();

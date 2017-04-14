@@ -13,8 +13,8 @@ import javax.persistence.Id;
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     private String itemName;
     private double itemPrice;
@@ -44,8 +44,12 @@ public class Item {
         return itemPrice * quantity;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
 
