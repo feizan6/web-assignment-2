@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ItemServiceImpl implements ItemService {
+
     private ItemRepository itemRepository;
 
     @Autowired
@@ -21,13 +22,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Item getProductById(Integer id) {
+    public Item getItemById(Integer id) {
         return itemRepository.findOne(id);
     }
 
     @Override
-    public Item saveItem(Item product) {
-        return itemRepository.save(product);
+    public Item saveItem(Item item) {
+        return itemRepository.save(item);
     }
 
     @Override

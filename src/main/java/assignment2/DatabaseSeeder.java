@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +18,13 @@ import java.util.List;
 public class DatabaseSeeder implements CommandLineRunner {
     private ItemRepository itemRepository;
 
+
     @Autowired
     public DatabaseSeeder(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
 
-    // Generates initial db values.
+    // Generates initial d
     @Override
     public void run(String... strings) throws Exception {
         List<Item> items = new ArrayList<>();
@@ -31,5 +34,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         items.add(new Item("Fiji Water", 1.74, 1));
 
         itemRepository.save(items);
+
+
     }
 }

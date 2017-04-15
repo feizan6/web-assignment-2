@@ -12,7 +12,7 @@ public interface ItemService {
 
     Iterable<Item> listAllItems();
 
-    Item getProductById(Integer id);
+    Item getItemById(Integer id);
 
     Item saveItem(Item item);
 

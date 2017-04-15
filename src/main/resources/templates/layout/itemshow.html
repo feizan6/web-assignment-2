@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Item...</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>Spring Shopping List Manager</title>
+    <link rel="stylesheet" href="../../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
 </head>
 <body>
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Spring Shopping Manager</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="../items">View Items<span class="sr-only">(current)</span></a></li>
+                <li><a href="../items/new">Add a new item</a></li>
+            </ul>
+            <p class="navbar-text navbar-right" th:text="'Signed in as ' + ${username}" style="margin-right: 10px">
+                Signed in anonymously</p>
+        </div>
+
+    </nav>
+</header>
+
+<div class="container">
+
+    <h2>Item Details</h2>
+    <div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Item Id:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${item.id}">Item ID</p></div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Item Name:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${item.itemName}">Item Name</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Price:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${item.itemPrice}">Item Price</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Quantity:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${item.quantity}">Quantity</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
