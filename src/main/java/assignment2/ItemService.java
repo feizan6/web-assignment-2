@@ -1,6 +1,6 @@
 package assignment2;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import assignment2.model.Item;
 
 /**
  * Created by Fayzan on 14/04/2017.

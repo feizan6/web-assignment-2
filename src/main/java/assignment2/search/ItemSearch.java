@@ -1,15 +1,5 @@
 package assignment2.search;
 
-import assignment2.Item;
-import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-import java.util.List;
-
 /**
  * Created by Fayzan on 15/04/2017.
  */

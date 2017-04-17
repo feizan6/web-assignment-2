@@ -1,5 +1,6 @@
 package assignment2;
 
+import assignment2.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

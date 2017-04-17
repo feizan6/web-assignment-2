@@ -1,10 +1,8 @@
 package assignment2;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import assignment2.model.Item;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * Created by Fayzan on 13/04/2017.

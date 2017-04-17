@@ -1,12 +1,12 @@
-package assignment2;
+package assignment2.controllers;
 
 //import assignment2.search.ItemSearch;
+import assignment2.ItemService;
+import assignment2.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Created by Fayzan on 13/04/2017.
@@ -41,13 +41,13 @@ public class ItemController {
     @RequestMapping("item/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("item", itemService.getItemById(id));
-        return "itemform";
+        return "layout/newedititem";
     }
 
     @RequestMapping("items/new")
     public String newProduct(Model model) {
         model.addAttribute("item", new Item());
-        return "layout/new";
+        return "layout/newedititem";
     }
 
     @RequestMapping(value = "item", method = RequestMethod.POST)
