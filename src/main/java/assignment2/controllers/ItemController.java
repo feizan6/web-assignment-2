@@ -1,12 +1,15 @@
 package assignment2.controllers;
 
 //import assignment2.search.ItemSearch;
+
 import assignment2.ItemService;
 import assignment2.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Created by Fayzan on 13/04/2017.
@@ -53,7 +56,7 @@ public class ItemController {
     @RequestMapping(value = "item", method = RequestMethod.POST)
     public String saveProduct(Item item) {
         itemService.saveItem(item);
-        return "redirect:/items/" + item.getId();
+        return "redirect:/item/" + item.getId();
     }
 
 

@@ -27,7 +27,7 @@
 <div class="container">
     <h2>Item Details</h2>
     <div>
-        <form class="form-horizontal" th:object="${item}" th:action="@{/items}" method="post">
+        <form class="form-horizontal" th:object="${item}" th:action="@{/item}" method="post">
             <input type="hidden" th:field="*{id}"/>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Item Name:</label>

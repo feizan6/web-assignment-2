@@ -1,4 +1,4 @@
-package assignment2.search;
+package com.example.search;
 
 /**
  * Created by Fayzan on 15/04/2017.
