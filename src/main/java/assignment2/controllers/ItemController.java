@@ -7,9 +7,12 @@ import assignment2.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 /**
  * Created by Fayzan on 13/04/2017.
@@ -48,13 +51,19 @@ public class ItemController {
     }
 
     @RequestMapping("items/new")
-    public String newProduct(Model model) {
+    public String newProduct(@Valid Model model) {
+
         model.addAttribute("item", new Item());
         return "layout/newedititem";
     }
 
     @RequestMapping(value = "item", method = RequestMethod.POST)
-    public String saveProduct(Item item) {
+    public String saveProduct(@Valid Item item, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "layout/newedititem";
+        }
+
         itemService.saveItem(item);
         return "redirect:/item/" + item.getId();
     }
