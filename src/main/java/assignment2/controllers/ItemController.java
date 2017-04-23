@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
@@ -19,7 +20,7 @@ import javax.validation.Valid;
  */
 
 
-@Controller
+@RestController
 public class ItemController {
 
     private ItemService itemService;
@@ -29,8 +30,6 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-//    @Autowired
-//    private ItemSearch itemSearch;
 
     @RequestMapping(value = "/items", method = RequestMethod.GET)
     public String list(Model model) {
@@ -67,28 +66,6 @@ public class ItemController {
         itemService.saveItem(item);
         return "redirect:/item/" + item.getId();
     }
-
-
-//    /**
-//     * Show search results for the given query.
-//     *
-//     * @param The search query.
-//     */
-//    @RequestMapping("/search")
-//    public String search(String q, Model model) {
-//        List<Item> searchResults = null;
-//        try {
-//            searchResults = itemSearch.search(q);
-//        }
-//        catch (Exception ex) {
-//            // here you should handle unexpected errors
-//            // ...
-//            // throw ex;
-//        }
-//        model.addAttribute("searchResults", searchResults);
-//        return "layout/search";
-//    }
-
 
     @RequestMapping("item/delete/{id}")
     public String delete(@PathVariable Integer id) {
