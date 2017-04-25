@@ -20,7 +20,7 @@ import javax.validation.Valid;
  */
 
 
-@RestController
+@Controller
 public class ItemController {
 
     private ItemService itemService;
@@ -29,7 +29,6 @@ public class ItemController {
     public void setItemService(ItemService itemService) {
         this.itemService = itemService;
     }
-
 
     @RequestMapping(value = "/items", method = RequestMethod.GET)
     public String list(Model model) {
@@ -66,6 +65,7 @@ public class ItemController {
         itemService.saveItem(item);
         return "redirect:/item/" + item.getId();
     }
+
 
     @RequestMapping("item/delete/{id}")
     public String delete(@PathVariable Integer id) {
