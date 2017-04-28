@@ -1,20 +1,21 @@
 package assignment2.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
+ * An entity Item composed of four fields, item, itemName, itemPrice, quantity
  * Created by Fayzan on 13/04/2017.
  */
 
 @Entity
-public class Item {
+//@Table(name = "items")
+public class Item{
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -74,6 +75,10 @@ public class Item {
 
     public Integer getId() {
         return id;
+    }
+
+    public int getColumnCount() {
+        return getClass().getDeclaredFields().length;
     }
 }
 

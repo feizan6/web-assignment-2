@@ -8,12 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by Fayzan on 13/04/2017.
@@ -24,6 +22,9 @@ import javax.validation.Valid;
 public class ItemController {
 
     private ItemService itemService;
+
+//    @Autowired
+//    private ItemSearch itemSearch;
 
     @Autowired
     public void setItemService(ItemService itemService) {
@@ -72,4 +73,24 @@ public class ItemController {
         itemService.deleteItem(id);
         return "redirect:/items";
     }
+
+//     /**
+//     * Show search results for the given query.
+//     *
+//     * @param q The search query.
+//     */
+//    @RequestMapping("/search")
+//    public String search(String q, Model model) {
+//        List<Item> searchResults = null;
+//        try {
+//            searchResults = itemSearch.search(q);
+//        }
+//        catch (Exception ex) {
+//            // here you should handle unexpected errors
+//            // ...
+//            // throw ex;
+//        }
+//        model.addAttribute("searchResults", searchResults);
+//        return "search";
+//    }
 }

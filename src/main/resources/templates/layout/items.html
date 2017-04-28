@@ -7,25 +7,24 @@
 </head>
 <body>
 <header>
-<nav class="navbar navbar-default">
-<div class="container-fluid">
-    <div class="navbar-header">
-        <a class="navbar-brand">Spring Shopping Manager</a>
-    </div>
-    <ul class="nav navbar-nav">
-        <li><a href="/">Home<span class="sr-only">(current)</span></a></li>
-        <li class="active"><a href="items">View Items<span class="sr-only">(current)</span></a></li>
-        <li><a href="items/new">Add a new item</a></li>
-    </ul>
-    <p class="navbar-text navbar-right" th:text="'Signed in as ' + ${username}" style="margin-right: 10px">
-        Signed in anonymously</p>
-</div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Spring Shopping Manager</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="items">View Items<span class="sr-only">(current)</span></a></li>
+                <li><a href="items/new">Add a new item</a></li>
+            </ul>
+            <p class="navbar-text navbar-right" th:text="'Signed in as ' + ${username}" style="margin-right: 10px">
+                Signed in anonymously</p>
+        </div>
 
-</nav>
+    </nav>
 </header>
 
 <div class="container">
-
     <div>
         <h3>My Shopping List</h3>
         <table class="table table-striped">
@@ -41,18 +40,23 @@
             </tr>
             <tr th:each="item : ${items}">
                 <td th:text="${item.id}"><a href="/item/${item.id}">Id</a></td>
-                <td th:text="${item.itemName}">Product Id</td>
-                <td th:text="${item.quantity}">descirption</td>
-                <td th:text="${item.itemPrice}">price</td>
-                <td th:text="${item.totalPrice}">total price</td>
+                <td th:text="${item.itemName}">Item Name</td>
+                <td th:text="${item.quantity}">Item Quantity</td>
+                <td th:text="${item.itemPrice}">Item Price</td>
+                <td th:text="${item.totalPrice}">Total price</td>
                 <td><a th:href="${'/item/' + item.id}">View</a></td>
                 <td><a th:href="${'/item/edit/' + item.id}">Edit</a></td>
                 <td><a th:href="${'/item/delete/' + item.id}">Delete</a></td>
             </tr>
         </table>
 
+        <a href="../download.pdf">Shopping List - PDF Export</a>
+        <a href="../download.xls">Shopping List - Excel Export</a>
+
+
     </div>
 </div>
+
 
 </body>
 </html>
