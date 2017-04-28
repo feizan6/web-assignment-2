@@ -25,38 +25,36 @@
 </header>
 
 <div class="container">
-    <div>
-        <h3>My Shopping List</h3>
-        <table class="table table-striped">
-            <tr>
-                <th>Id</th>
-                <th>Item Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Price x Quantity</th>
-                <th>View</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <tr th:each="item : ${items}">
-                <td th:text="${item.id}"><a href="/item/${item.id}">Id</a></td>
-                <td th:text="${item.itemName}">Item Name</td>
-                <td th:text="${item.quantity}">Item Quantity</td>
-                <td th:text="${item.itemPrice}">Item Price</td>
-                <td th:text="${item.totalPrice}">Total price</td>
-                <td><a th:href="${'/item/' + item.id}">View</a></td>
-                <td><a th:href="${'/item/edit/' + item.id}">Edit</a></td>
-                <td><a th:href="${'/item/delete/' + item.id}">Delete</a></td>
-            </tr>
-        </table>
+    <h3>My Shopping List</h3>
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Price x Quantity</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.id}"><a href="/item/${item.id}">Id</a></td>
+            <td th:text="${item.itemName}">Item Name</td>
+            <td th:text="${item.quantity}">Item Quantity</td>
+            <td th:text="${item.itemPrice}">Item Price</td>
+            <td th:text="${item.totalPrice}">Total price</td>
+            <td><a th:href="${'/item/' + item.id}">View</a></td>
+            <td><a th:href="${'/item/edit/' + item.id}">Edit</a></td>
+            <td><a th:href="${'/item/delete/' + item.id}">Delete</a></td>
+        </tr>
+    </table>
 
-        <a href="../download.pdf">Shopping List - PDF Export</a>
-        <a href="../download.xls">Shopping List - Excel Export</a>
-
-
-    </div>
+    <ul>
+        <li><a href="../download.pdf">Shopping List - PDF Export</a></li>
+        <li><a href="../download.xls">Shopping List - Excel Export</a></li>
+    </ul>
+    
 </div>
-
 
 </body>
 </html>
