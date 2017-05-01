@@ -7,10 +7,15 @@ import assignment2.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Fayzan on 13/04/2017.
@@ -71,23 +76,42 @@ public class ItemController {
         return "redirect:/items";
     }
 
-//     /**
-//     * Show search results for the given query.
-//     *
-//     * @param q The search query.
-//     */
-//    @RequestMapping("/search")
-//    public String search(String q, Model model) {
-//        List<Item> searchResults = null;
-//        try {
-//            searchResults = itemSearch.search(q);
-//        }
-//        catch (Exception ex) {
-//            // here you should handle unexpected errors
-//            // ...
-//            // throw ex;
-//        }
-//        model.addAttribute("searchResults", searchResults);
-//        return "search";
-//    }
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String search(Model model, HttpServletRequest request) {
+        model.addAttribute("item", new Item());
+        return "layout/search";
+    }
+
+    @RequestMapping(value = "/contacts/list", method = RequestMethod.GET)
+    public String processFindForm(Item item, BindingResult result, Model model, HttpSession session) {
+        Collection<Item> results = null;
+
+        if (StringUtils.isEmpty(item.getItemName())) {
+            // allow parameterless GET request to return all contacts
+            return "redirect:/items/";
+        } else {
+            results = this.itemService.findByItemName(item.getItemName());
+        }
+
+        if (results.size() < 1) {
+            // no contacts found
+            result.rejectValue("itemName", "itemName.search.notfound", new Object[] { item.getItemName() },
+                    "not found");
+            return "layout/search";
+        }
+
+        session.setAttribute("searchItemName", item.getItemName());
+
+        if (results.size() > 1) {
+            // multiple contacts found
+            model.addAttribute("items", results);
+            return "layout/search";
+        } else {
+            // 1 contact found
+            item = results.iterator().next();
+            return "redirect:/item/" + item.getId();
+        }
+    }
+
+
 }

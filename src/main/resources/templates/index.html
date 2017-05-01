@@ -52,6 +52,7 @@
             var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
             chart.draw(data, options);
         }
+
     </script>
 
 </head>
@@ -63,7 +64,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" th:text="#{appTitle}"></a>
             </div>
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav ">
                 <li><a href="#" th:text="#{home}"></a></li>
                 <li><a href="items" th:text="#{viewItems}"></a></li>
                 <li><a href="items/new" th:text="#{addItem}"></a></li>
@@ -74,13 +75,14 @@
     </nav>
 </header>
 
-<span th:text="#{lang.change}"></span>:
-<select id="locales">
-    <option value=""></option>
-    <option value="en" th:text="#{lang.eng}"></option>
-    <option value="fr" th:text="#{lang.fr}"></option>
-</select>
-
+<div class="navbar-form">
+    <span th:text="#{lang.change}"></span>:
+    <select id="locales">
+        <option value=""></option>
+        <option value="en" th:text="#{lang.eng}"></option>
+        <option value="fr" th:text="#{lang.fr}"></option>
+    </select>
+</div>
 
 <!--Div that will hold the pie chart-->
 <div id="chart_div"></div>

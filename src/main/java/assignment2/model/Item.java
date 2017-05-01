@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
  */
 
 @Entity
-//@Table(name = "items")
+@Table(name = "items")
 public class Item{
 
 
@@ -79,6 +79,15 @@ public class Item{
 
     public int getColumnCount() {
         return getClass().getDeclaredFields().length;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + itemName + '\'' +
+                ", password='" + quantity + '\'' +
+                ", email='" + itemPrice + '\'' +
+                '}';
     }
 }
 
