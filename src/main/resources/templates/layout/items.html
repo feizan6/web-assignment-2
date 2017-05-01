@@ -4,18 +4,29 @@
     <meta charset="UTF-8"/>
     <title>Spring Shopping List Manager</title>
     <link rel="stylesheet" href="../../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#locales").change(function () {
+                var selectedOption = $('#locales').val();
+                if (selectedOption != ''){
+                    window.location.replace('?lang=' + selectedOption);
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 <header>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand">Spring Shopping Manager</a>
+                <a class="navbar-brand" th:text="#{appTitle}"></a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="/">Home<span class="sr-only">(current)</span></a></li>
-                <li class="active"><a href="items">View Items<span class="sr-only">(current)</span></a></li>
-                <li><a href="items/new">Add a new item</a></li>
+                <li><a href="/" th:text="#{home}"></a></li>
+                <li class="active"><a href="items" th:text="#{viewItems}"></a></li>
+                <li><a href="items/new" th:text="#{addItem}"></a></li>
             </ul>
             <p class="navbar-text navbar-right" th:text="'Signed in as ' + ${username}" style="margin-right: 10px">
                 Signed in anonymously</p>
@@ -25,17 +36,17 @@
 </header>
 
 <div class="container">
-    <h3>My Shopping List</h3>
+    <h3 th:text="#{myShoppingList}"></h3>
     <table class="table table-striped">
         <tr>
             <th>Id</th>
-            <th>Item Name</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Price x Quantity</th>
-            <th>View</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th th:text="#{itemName}"></th>
+            <th th:text="#{itemQuantity}"></th>
+            <th th:text="#{itemPrice}"> </th>
+            <th th:text="#{itemTotal}"></th>
+            <th th:text="#{view}"></th>
+            <th th:text="#{edit}"></th>
+            <th th:text="#{delete}"></th>
         </tr>
         <tr th:each="item : ${items}">
             <td th:text="${item.id}"><a href="/item/${item.id}">Id</a></td>
@@ -43,11 +54,19 @@
             <td th:text="${item.quantity}">Item Quantity</td>
             <td th:text="${item.itemPrice}">Item Price</td>
             <td th:text="${item.totalPrice}">Total price</td>
-            <td><a th:href="${'/item/' + item.id}">View</a></td>
-            <td><a th:href="${'/item/edit/' + item.id}">Edit</a></td>
-            <td><a th:href="${'/item/delete/' + item.id}">Delete</a></td>
+            <td><a th:href="${'/item/' + item.id}" th:text="#{view}"></a></td>
+            <td><a th:href="${'/item/edit/' + item.id}"  th:text="#{edit}"></a></td>
+            <td><a th:href="${'/item/delete/' + item.id}" th:text="#{delete}"></a></td>
         </tr>
     </table>
+
+
+    <span th:text="#{lang.change}"></span>:
+    <select id="locales">
+        <option value=""></option>
+        <option value="en" th:text="#{lang.eng}"></option>
+        <option value="fr" th:text="#{lang.fr}"></option>
+    </select>
 
     <ul>
         <li><a href="../download.pdf">Shopping List - PDF Export</a></li>
