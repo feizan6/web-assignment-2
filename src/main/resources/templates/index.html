@@ -22,18 +22,12 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand">Spring Shopping Manager</a>
+                <a class="navbar-brand" th:text="#{appTitle}"></a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="#" th:text="#{greeting}"></a></li>
-                <li><a href="items">View Items</a></li>
-                <li><a href="items/new">Add a new item</a></li>
-                <li><span th:text="#{lang.change}"></span>:
-                    <select id="locales">
-                        <option value=""></option>
-                        <option value="en" th:text="#{lang.eng}"></option>
-                        <option value="fr" th:text="#{lang.fr}"></option>
-                    </select></li>
+                <li><a href="#" th:text="#{home}"></a></li>
+                <li><a href="items" th:text="#{viewItems}"></a></li>
+                <li><a href="items/new" th:text="#{addItem}"></a></li>
             </ul>
             <p class="navbar-text navbar-right" th:text="'Signed in as ' + ${username}" style="margin-right: 10px">
                 Signed in anonymously</p>
@@ -41,7 +35,12 @@
     </nav>
 </header>
 
-
+<span th:text="#{lang.change}"></span>:
+<select id="locales">
+    <option value=""></option>
+    <option value="en" th:text="#{lang.eng}"></option>
+    <option value="fr" th:text="#{lang.fr}"></option>
+</select>
 
 <footer class="footer" style="position: absolute; bottom: 0; background-color: #f5f5f5;">
     <div class="container">
