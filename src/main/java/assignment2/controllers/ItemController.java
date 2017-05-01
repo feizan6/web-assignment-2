@@ -52,11 +52,6 @@ public class ItemController {
         return "layout/newedititem";
     }
 
-    @RequestMapping("items/intern")
-    public String test(Model model) {
-
-        return "layout/test";
-    }
 
     @RequestMapping(value = "item", method = RequestMethod.POST)
     public String saveProduct(@Valid Item item, BindingResult bindingResult) {
