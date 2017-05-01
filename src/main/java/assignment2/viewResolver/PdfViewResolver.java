@@ -1,4 +1,4 @@
-package assignment2.viewResolver;
+package assignment2.viewResolver;//package assignment2.viewResolver;
 
 import assignment2.view.PdfView;
 import org.springframework.web.servlet.View;

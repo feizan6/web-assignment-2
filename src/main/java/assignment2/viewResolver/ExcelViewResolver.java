@@ -9,7 +9,7 @@ import java.util.Locale;
 /**
  * Created by Fayzan on 28/04/2017.
  */
-public class ExcelViewResolver implements ViewResolver{
+public class ExcelViewResolver implements ViewResolver {
 
     @Override
     public View resolveViewName(String s, Locale locale) throws Exception {

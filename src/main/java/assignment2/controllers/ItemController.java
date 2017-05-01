@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * Created by Fayzan on 13/04/2017.
@@ -22,9 +21,6 @@ import java.util.List;
 public class ItemController {
 
     private ItemService itemService;
-
-//    @Autowired
-//    private ItemSearch itemSearch;
 
     @Autowired
     public void setItemService(ItemService itemService) {
@@ -54,6 +50,12 @@ public class ItemController {
 
         model.addAttribute("item", new Item());
         return "layout/newedititem";
+    }
+
+    @RequestMapping("items/intern")
+    public String test(Model model) {
+
+        return "layout/test";
     }
 
     @RequestMapping(value = "item", method = RequestMethod.POST)

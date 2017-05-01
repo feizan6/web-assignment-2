@@ -4,6 +4,17 @@
     <meta charset="UTF-8"/>
     <title>Spring Shopping List Manager</title>
     <link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#locales").change(function () {
+                var selectedOption = $('#locales').val();
+                if (selectedOption != ''){
+                    window.location.replace('?lang=' + selectedOption);
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -14,15 +25,23 @@
                 <a class="navbar-brand">Spring Shopping Manager</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
+                <li><a href="#" th:text="#{greeting}"></a></li>
                 <li><a href="items">View Items</a></li>
                 <li><a href="items/new">Add a new item</a></li>
+                <li><span th:text="#{lang.change}"></span>:
+                    <select id="locales">
+                        <option value=""></option>
+                        <option value="en" th:text="#{lang.eng}"></option>
+                        <option value="fr" th:text="#{lang.fr}"></option>
+                    </select></li>
             </ul>
             <p class="navbar-text navbar-right" th:text="'Signed in as ' + ${username}" style="margin-right: 10px">
                 Signed in anonymously</p>
         </div>
     </nav>
 </header>
+
+
 
 <footer class="footer" style="position: absolute; bottom: 0; background-color: #f5f5f5;">
     <div class="container">
@@ -31,3 +50,4 @@
 
 </body>
 </html>
+
