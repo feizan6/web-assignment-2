@@ -64,8 +64,9 @@ public class ItemController {
 
 
     @RequestMapping(value = "item", method = RequestMethod.POST)
-    public String saveProduct(@Valid Item item, BindingResult bindingResult) {
+    public String saveProduct(@Valid Item item, BindingResult bindingResult, Model model) {
 
+        model.addAttribute("datetime", new Date());
         if (bindingResult.hasErrors()) {
             return "layout/newedititem";
         }
