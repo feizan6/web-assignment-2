@@ -28,7 +28,7 @@
                 <li class="active"><a href="items" th:text="#{viewItems}"></a></li>
                 <li><a href="items/new" th:text="#{addItem}"></a></li>
             </ul>
-            <p class="navbar-text navbar-right" th:text="'Signed in as ' + ${username}" style="margin-right: 10px">
+            <p class="navbar-text navbar-right" th:text="#{signedIn}" style="margin-right: 10px">
                 Signed in anonymously</p>
         </div>
 
@@ -45,8 +45,8 @@
 </div>
 
 <div class="navbar-form nav-tabs">
-    <a type="button" class="btn btn-success" href="../download.pdf">PDF Export</a>
-    <a type="button" class="btn btn-info" href="../download.xls">XLS Export</a>
+    <a type="button" class="btn btn-success" href="../download.pdf" th:text="#{pdfExport}"></a>
+    <a type="button" class="btn btn-info" href="../download.xls" th:text="#{xlsExport}"></a>
 </div>
 
 <div class="container">
