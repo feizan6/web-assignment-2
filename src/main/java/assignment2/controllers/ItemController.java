@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,18 +35,21 @@ public class ItemController {
 
     @RequestMapping(value = "/items", method = RequestMethod.GET)
     public String list(Model model) {
+        model.addAttribute("datetime", new Date());
         model.addAttribute("items", itemService.listAllItems());
         return "layout/items";
     }
 
     @RequestMapping("item/{id}")
     public String showItem(@PathVariable Integer id, Model model) {
+        model.addAttribute("datetime", new Date());
         model.addAttribute("item", itemService.getItemById(id));
         return "layout/itemshow";
     }
 
     @RequestMapping("item/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
+        model.addAttribute("datetime", new Date());
         model.addAttribute("item", itemService.getItemById(id));
         return "layout/newedititem";
     }
@@ -53,6 +57,7 @@ public class ItemController {
     @RequestMapping("items/new")
     public String newProduct(@Valid Model model) {
 
+        model.addAttribute("datetime", new Date());
         model.addAttribute("item", new Item());
         return "layout/newedititem";
     }
@@ -75,43 +80,5 @@ public class ItemController {
         itemService.deleteItem(id);
         return "redirect:/items";
     }
-
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String search(Model model, HttpServletRequest request) {
-        model.addAttribute("item", new Item());
-        return "layout/search";
-    }
-
-    @RequestMapping(value = "/contacts/list", method = RequestMethod.GET)
-    public String processFindForm(Item item, BindingResult result, Model model, HttpSession session) {
-        Collection<Item> results = null;
-
-        if (StringUtils.isEmpty(item.getItemName())) {
-            // allow parameterless GET request to return all contacts
-            return "redirect:/items/";
-        } else {
-            results = this.itemService.findByItemName(item.getItemName());
-        }
-
-        if (results.size() < 1) {
-            // no contacts found
-            result.rejectValue("itemName", "itemName.search.notfound", new Object[] { item.getItemName() },
-                    "not found");
-            return "layout/search";
-        }
-
-        session.setAttribute("searchItemName", item.getItemName());
-
-        if (results.size() > 1) {
-            // multiple contacts found
-            model.addAttribute("items", results);
-            return "layout/search";
-        } else {
-            // 1 contact found
-            item = results.iterator().next();
-            return "redirect:/item/" + item.getId();
-        }
-    }
-
 
 }
